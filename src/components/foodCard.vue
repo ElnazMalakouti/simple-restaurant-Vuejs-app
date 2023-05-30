@@ -1,33 +1,34 @@
-<script setup>
-import 'tailwindcss/tailwind.css'
-defineProps({
-    foodId: {
-        type: Number,
-        required: true
-    },
-    foodName: {
-        type: String,
-        required: true
-    },
-    foodPrice: {
-        type: Number,
-        required: true
-    },
-    foodImage: {
-        type: String,
-        required: true
-    },
-    count: {
-        type: Number,
-        required: true
-    },
-    addOrderFunction : {
-        type : Function
-    },
-    removeOrderFunction : {
-        type : Function
+<script >
+export default {
+    props: {
+        foodId: {
+            type: Number,
+            required: true
+        },
+        foodName: {
+            type: String,
+            required: true
+        },
+        foodPrice: {
+            type: Number,
+            required: true
+        },
+        foodImage: {
+            type: String,
+            required: true
+        },
+        count: {
+            type: Number,
+            required: true
+        },
+        addOrderFunction: {
+            type: Function
+        },
+        removeOrderFunction: {
+            type: Function
+        }
     }
-})
+}
 </script>
 
 <template>
@@ -48,20 +49,18 @@ defineProps({
                     <button @click="() => {
                         count--
                         removeOrderFunction(this.foodId)
-                        }" 
-                        :disabled="count === 0 ? true : false" 
+                    }" :disabled="count === 0 ? true : false"
                         class="w-[26px] h-[26px] bg-[#9E1010] text-white text-[24px] font-bold rounded-tl-[4px] rounded-bl-[4px] border flex justify-center items-center disabled:bg-[#D1D5DB] disabled:text-[#6B7280]">
                         -
                     </button>
                     <p>{{ count }}</p>
-                    <button 
-                    @click="() => {
+                    <button @click="() => {
                         count++
                         addOrderFunction(this.foodId)
-                    }" 
-                    class="w-[26px] h-[26px] bg-[#9E1010] text-white text-[22px] font-bold rounded-tr-[4px] rounded-br-[4px] border flex justify-center items-center">
-                    +
-                </button>
+                    }"
+                        class="w-[26px] h-[26px] bg-[#9E1010] text-white text-[22px] font-bold rounded-tr-[4px] rounded-br-[4px] border flex justify-center items-center">
+                        +
+                    </button>
                 </div>
             </div>
         </div>
