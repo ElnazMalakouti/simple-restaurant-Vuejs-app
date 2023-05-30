@@ -7,7 +7,14 @@ html , body , #app {
     height: 100%;
     padding: 16px;
     display: flex;
-    justify-content: end;
-    align-items: center;
+    gap: 30px;
+    justify-content: center;
+    align-items: start;
     background-image: url("https://sfondo.info/i/original/3/c/8/67278.jpg");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
