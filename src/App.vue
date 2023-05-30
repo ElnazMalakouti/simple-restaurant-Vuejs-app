@@ -1,6 +1,6 @@
 <script >
 import './assets/main.css'
-import FoodCard from './components/FoodCard.vue'
+import FoodCard from  './components/FoodCard.vue'
 import OrderCard from './components/OrderCard.vue'
 export default {
   components: {
