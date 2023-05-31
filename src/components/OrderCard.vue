@@ -18,39 +18,64 @@ defineProps({
 
 
 <template>
-    <div class="w-[400px] bg-[#F0F8FF] p-[16px] rounded-[16px] flex flex-col gap-[16px] justify-start items-center">
+    <aside>
 
-        <div class="w-full flex justify-start items-center">
-            <p>Your order list:</p>
+        <div class="flex items-center justify-start gap-2">
+            <div class="w-2 h-2 mt-0.5 bg-green-500 animate-pulse rounded-full"></div>
+            <h2 class="font-black text-xl">
+                Food Orders
+            </h2>
         </div>
 
-        <div class="w-full min-h-[100px] max-h-[252px] px-[16px] overflow-auto">
+        <div class="mt-8 grid grid-cols-1 gap-8">
+            <div
+                v-for="order in orderList"
+                class="flex items-center justify-start gap-x-4"
+            >
+                <div class="w-16 h-16 overflow-hidden rounded-full">
+                    <img class="object-center object-cover w-full h-full" alt="foodPic" :src="order.foodImage" />
+                </div>
 
-            <div class="w-full flex flex-col gap-[4px]">
-                <div class="w-full p-[12px] bg-white rounded-[8px] flex flex-col justify-between items-start"
-                    v-for="order in orderList">
-                    <div>
-                        <p class="text-[22px]">{{ order.foodName }}</p>
-                    </div>
-                    <div class="w-full flex justify-between items-end text-[18px]">
-                        <p>{{ order.foodPrice }}$</p>
-                        <div class="flex justify-center items-center gap-[8px]">
-                            <button :disabled="order.count === 0 ? true : false"
-                                class="w-[26px] h-[26px] bg-[#9E1010] text-white text-[24px] font-bold rounded-tl-[4px] rounded-bl-[4px] border flex justify-center items-center disabled:bg-[#D1D5DB] disabled:text-[#6B7280]">-</button>
-                            <p>{{ order.count }}</p>
-                            <button
-                                class="w-[26px] h-[26px] bg-[#9E1010] text-white text-[22px] font-bold rounded-tr-[4px] rounded-br-[4px] border flex justify-center items-center">+</button>
+                <div class="flex flex-col gap-y-2 flex-grow">
+                    <p class="font-bold text-lg">
+                        {{ order.foodName }}
+                    </p>
+                
+                    <div class="flex items-center justify-between">
+                        
+                        <div class="flex items-center justify-between gap-x-1">
+                            <p class="text-slate-500">
+                                ${{ order.foodPrice }}
+                            </p>
+
+                            <p class="text-slate-500">
+                                x{{ order.count }}
+                            </p>
+                        </div>
+
+                        <div class="font-bold text-lg">
+                            ${{ order.foodPrice * order.count }}
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
-        <div class="mt-auto ml-[50%] text-[22px] font-bold flex justify-start items-center gap-[16px]">
-            <p>Total Price:</p>
-            <p>{{ totalPrice }}$</p>
+        <div v-if="orderList.length > 0" class="flex items-center justify-between mt-8">
+            <p class="font-black text-xl text-slate-700">
+                Total Price
+            </p>
+            
+            <p class="font-black text-xl">
+                ${{ totalPrice }}
+            </p>
         </div>
 
-    </div>
+        <div v-else>
+            <p class="font-black text-xl text-slate-300 text-center">
+                Made your day with a food!
+            </p>
+        </div>
+
+    </aside>
 </template>
